@@ -7,19 +7,29 @@ import kotlin.concurrent.thread
 
 class AlbumViewModel : ViewModel() {
     private val repository = SongRepository()
-    private val _data = MutableLiveData(FeedModel())
-    val data: LiveData<FeedModel>
-        get() = _data
+    private val _albumData = MutableLiveData(AlbumFeedModel())
+    val albumData: LiveData<AlbumFeedModel>
+        get() = _albumData
 
-    fun loadAlbum(){
-        thread{
-            _data.postValue(FeedModel(loading = true))
-            try{
-                val album = repository.getAlbum()
-                FeedModel(album = album, empty = album.tracks.isEmpty())
-            } catch (e:Exception){
-                FeedModel(error = true)
-            }.also { _data::postValue }
+    init {
+        loadAlbum()
+    }
+
+    private fun loadAlbum() {
+        thread {
+            _albumData.postValue(AlbumFeedModel(loading = true))
+            try {
+                val album = repository.getAlbum().let { albumObject ->
+                    albumObject.copy(tracks = albumObject.tracks.map {
+                        it.copy(album = albumObject.title) })
+                }
+                AlbumFeedModel(album = album, empty = album.tracks.isEmpty())
+            } catch (e: Exception) {
+                println(e.message)
+                AlbumFeedModel(error = true)
+            }.also(_albumData::postValue)
         }
     }
+
 }
+

@@ -17,8 +17,6 @@ class SongRepository {
     private val typeToken = object : TypeToken<AlbumObject>() {}
 
     companion object {
-        val BASE_URL =
-            "https://raw.githubusercontent.com/netology-code/andad-homeworks/master/09_multimedia/data/"
         val jsonType = "application/json".toMediaType()
     }
 
@@ -36,9 +34,9 @@ class SongRepository {
     }
 
     private val songList: List<SongObject> = listOf(
-        SongObject(1, "peepa", "dooda", 1234),
-        SongObject(2, "peepa", "ddsda", 132),
-        SongObject(3, "keka", "kekaruj", 323123)
+        SongObject(1, "peepa", "dooda", "tef", 1234),
+        SongObject(2, "peepa", "ddsda", "toof", 132),
+        SongObject(3, "keka", "kekaruj", "trenk", 323123)
     )
 }
 
