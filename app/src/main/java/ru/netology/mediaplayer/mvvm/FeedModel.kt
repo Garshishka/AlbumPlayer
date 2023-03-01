@@ -1,4 +1,4 @@
-package ru.netology.mediaplayer
+package ru.netology.mediaplayer.mvvm
 
 import ru.netology.mediaplayer.data.AlbumObject
 
