@@ -4,7 +4,12 @@ import ru.netology.mediaplayer.data.AlbumObject
 
 data class AlbumFeedModel(
     val album: AlbumObject? = null,
-    val loading : Boolean = false,
-    val error : Boolean = false,
-    val empty : Boolean = false
+    val state: LoadState = LoadState.DONE
 )
+
+enum class LoadState(){
+    LOADING,
+    ERROR,
+    EMPTY,
+    DONE,
+}

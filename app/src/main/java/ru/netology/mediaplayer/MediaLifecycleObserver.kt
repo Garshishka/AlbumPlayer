@@ -1,5 +1,6 @@
 package ru.netology.mediaplayer
 
+import android.media.AudioAttributes
 import android.media.MediaPlayer
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -9,12 +10,13 @@ class MediaLifecycleObserver : LifecycleEventObserver {
 
     var mediaPlayer: MediaPlayer? = MediaPlayer()
 
-    fun play(){
-        mediaPlayer?.setOnPreparedListener {
-            it.start()
-        }
-
-        mediaPlayer?.prepareAsync()
+    init {
+        mediaPlayer?.setAudioAttributes(
+            AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .build()
+        )
     }
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
@@ -24,6 +26,7 @@ class MediaLifecycleObserver : LifecycleEventObserver {
                 mediaPlayer?.release()
                 mediaPlayer = null
             }
+            Lifecycle.Event.ON_RESUME -> mediaPlayer?.start()
             Lifecycle.Event.ON_DESTROY -> source.lifecycle.removeObserver(this)
             else -> Unit
         }

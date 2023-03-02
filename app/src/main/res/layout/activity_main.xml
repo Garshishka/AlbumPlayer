@@ -8,28 +8,27 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/album_text_label"
-        android:text="@string/album"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/base_margin"
+        android:text="@string/album"
         android:textAllCaps="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/album_name_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/album_name_text"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/album_name_text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/base_margin"
-        android:textSize="@dimen/big_text"
         android:textColor="@color/black"
-        tools:text = "Album Name"
-        app:layout_constraintTop_toBottomOf="@id/album_text_label"
+        android:textSize="@dimen/big_text"
+        app:layout_constraintBottom_toTopOf="@id/artist_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/artist_label"/>
+        app:layout_constraintTop_toBottomOf="@id/album_text_label"
+        tools:text="Album Name" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/artist_label"
@@ -37,10 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/base_margin"
         android:text="@string/artist"
-        app:layout_constraintTop_toBottomOf="@id/album_name_text"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/artist_text"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/album_name_text" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/artist_text"
@@ -48,43 +46,79 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/base_margin"
         android:textColor="@color/black"
-        tools:text = "Artist Name"
-        app:layout_constraintTop_toBottomOf="@id/album_name_text"
         app:layout_constraintStart_toEndOf="@id/artist_label"
-        />
+        app:layout_constraintTop_toBottomOf="@id/album_name_text"
+        tools:text="Artist Name" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/published_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/base_margin"
-        tools:text = "XXXX"
-        app:layout_constraintTop_toBottomOf="@id/artist_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/genre_text"
         app:layout_constraintBottom_toTopOf="@id/song_list"
-        />
+        app:layout_constraintEnd_toStartOf="@id/genre_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/artist_label"
+        tools:text="XXXX" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/genre_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/base_margin"
-        tools:text = "Genre"
-        app:layout_constraintTop_toBottomOf="@id/artist_label"
         app:layout_constraintStart_toEndOf="@id/published_text"
-        />
+        app:layout_constraintTop_toBottomOf="@id/artist_label"
+        tools:text="Genre" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/now_playing_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/base_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/album_text_label"
+        app:layout_constraintBottom_toTopOf="@id/now_playing_text"
+        android:text="@string/now_playing" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/now_playing_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/base_margin"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/now_playing_label"
+        tools:text="Song playing" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/now_playing_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/base_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/now_playing_text"
+        tools:text="420" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/song_list"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/song_layout"
-        android:layout_marginVertical="@dimen/default_margin"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/published_text"
+        android:layout_marginVertical="@dimen/default_margin"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/published_text"
+        tools:listitem="@layout/song_layout" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/loading_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/published_text"
+        tools:text="Loading STATUS" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

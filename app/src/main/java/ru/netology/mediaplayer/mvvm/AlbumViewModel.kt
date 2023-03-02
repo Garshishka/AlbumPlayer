@@ -17,16 +17,22 @@ class AlbumViewModel : ViewModel() {
 
     private fun loadAlbum() {
         thread {
-            _albumData.postValue(AlbumFeedModel(loading = true))
+            _albumData.postValue(AlbumFeedModel(state = LoadState.LOADING))
             try {
                 val album = repository.getAlbum().let { albumObject ->
-                    albumObject.copy(tracks = albumObject.tracks.map {
-                        it.copy(album = albumObject.title) })
+                    albumObject.copy(
+                        tracks = albumObject.tracks.map {
+                            it.copy(album = albumObject.title)
+                        },
+                    )
                 }
-                AlbumFeedModel(album = album, empty = album.tracks.isEmpty())
+                AlbumFeedModel(
+                    album = album,
+                    state = if (album.tracks.isEmpty()) LoadState.EMPTY else LoadState.DONE
+                )
             } catch (e: Exception) {
                 println(e.message)
-                AlbumFeedModel(error = true)
+                AlbumFeedModel(state = LoadState.ERROR)
             }.also(_albumData::postValue)
         }
     }

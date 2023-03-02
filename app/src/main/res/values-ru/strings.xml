@@ -3,4 +3,8 @@
     <string name="app_name">AlbumPlayer</string>
     <string name="album">Альбом</string>
     <string name="artist">Исполнитель:</string>
+    <string name="loading">ЗАГРУЗКА</string>
+    <string name="error">ОШИБКА</string>
+    <string name="empty">ЗДЕСЬ ПУСТО</string>
+    <string name="now_playing">Сейчас играет:</string>
 </resources>

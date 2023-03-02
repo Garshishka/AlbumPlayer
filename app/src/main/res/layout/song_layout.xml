@@ -40,15 +40,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Album name" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/song_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/default_margin"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="04:20" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

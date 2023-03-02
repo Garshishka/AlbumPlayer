@@ -30,13 +30,7 @@ class SongRepository {
             .let { it.body?.string() ?: throw RuntimeException("body is null") }
             .let {
                 gson.fromJson(it, typeToken.type)
-            } ?: AlbumObject(0, "No", "No", "No", "No", "No", songList)
+            } ?: AlbumObject(0, "No", "No", "No", "No", "No", emptyList())
     }
-
-    private val songList: List<SongObject> = listOf(
-        SongObject(1, "peepa", "dooda", "tef", 1234),
-        SongObject(2, "peepa", "ddsda", "toof", 132),
-        SongObject(3, "keka", "kekaruj", "trenk", 323123)
-    )
 }
 
