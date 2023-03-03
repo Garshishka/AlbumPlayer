@@ -2,6 +2,7 @@ package ru.netology.mediaplayer
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,15 +14,17 @@ class SongAdapter(
     private val onInteractionListener: OnInteractionListener,
 ) : ListAdapter<SongObject, SongsListViewHolder>(SongDiffCallback()) {
 
-    fun getNextId(position: Int): Int{
+    fun getNextId(position: Int): Int {
         return if (position == currentList.size) 0 else position
     }
-    fun getNextSong(position: Int) : Pair<String, MaterialButton> {
-        return getItem(position).file to getItem(position).playButton!!
+
+    fun getNextSong(position: Int): Pair<SongObject, MaterialButton> {
+        return getItem(position) to getItem(position).playButton!!
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongsListViewHolder {
         val binding = SongLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SongsListViewHolder(binding,onInteractionListener)
+        return SongsListViewHolder(binding, onInteractionListener)
     }
 
     override fun onBindViewHolder(holder: SongsListViewHolder, position: Int) {
@@ -40,10 +43,15 @@ class SongsListViewHolder(
             songName.text = song.file
             albumName.text = song.album
             playButton.setOnClickListener {
-                onInteractionListener.playOrPause(song.file, it as MaterialButton,song.id)
+                onInteractionListener.playOrPause(song, it as MaterialButton)
             }
             //That's a hack to get next song button
             song.playButton = playButton
+            playButton.icon = if (song.isPlayingNow) getDrawable(
+                playButton.context,
+                R.drawable.baseline_pause_32
+            ) else
+                getDrawable(playButton.context, R.drawable.baseline_play_arrow_32)
         }
     }
 

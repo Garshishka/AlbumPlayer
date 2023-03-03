@@ -7,5 +7,6 @@ data class SongObject(
     val file: String,
     val album: String?,
     //That's a hack to get next song button
-    var playButton: MaterialButton? = null
+    var playButton: MaterialButton? = null,
+    var isPlayingNow: Boolean = false,
 )
