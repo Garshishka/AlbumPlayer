@@ -36,6 +36,5 @@ class AlbumViewModel : ViewModel() {
             }.also(_albumData::postValue)
         }
     }
-
 }
 

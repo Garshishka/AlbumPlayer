@@ -6,7 +6,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import ru.netology.mediaplayer.data.AlbumObject
-import ru.netology.mediaplayer.data.SongObject
 import java.util.concurrent.TimeUnit
 
 class SongRepository {
@@ -15,6 +14,7 @@ class SongRepository {
         .build()
     private val gson = Gson()
     private val typeToken = object : TypeToken<AlbumObject>() {}
+    private val albumUrl = "https://github.com/netology-code/andad-homeworks/raw/master/09_multimedia/data/album.json"
 
     companion object {
         val jsonType = "application/json".toMediaType()
@@ -22,7 +22,7 @@ class SongRepository {
 
     fun getAlbum(): AlbumObject {
         val request: Request = Request.Builder()
-            .url("https://github.com/netology-code/andad-homeworks/raw/master/09_multimedia/data/album.json")
+            .url(albumUrl)
             .build()
 
         return client.newCall(request)

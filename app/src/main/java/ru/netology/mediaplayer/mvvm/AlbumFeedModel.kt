@@ -7,7 +7,7 @@ data class AlbumFeedModel(
     val state: LoadState = LoadState.DONE
 )
 
-enum class LoadState(){
+enum class LoadState() {
     LOADING,
     ERROR,
     EMPTY,

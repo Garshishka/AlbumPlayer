@@ -8,4 +8,4 @@ data class AlbumObject(
     val published: String,
     val genre: String,
     val tracks: List<SongObject>
-    )
+)
